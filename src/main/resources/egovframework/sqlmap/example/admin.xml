@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Sample">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+
+	<resultMap id="sample" class="egovframework.example.sample.service.SampleVO">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<result property="useYn" column="use_yn"/>
+		<result property="regUser" column="reg_user"/>
+	</resultMap>
+
+
+<select id="salelistt" resultClass="EgovMap">
+        <![CDATA[
+             SELECT 
+                *
+            FROM sale
+        ]]>
+         <isEqual   property="ch" compareValue="1">
+            		where  title LIKE  '%$search$%'
+        </isEqual>
+        <![CDATA[
+            limit $firstindex$, $recordperpage$
+        ]]>
+    </select>
+     <select id="salelistl" resultClass="EgovMap">
+        <![CDATA[
+            SELECT count(*) num
+            FROM sale
+    	]]>
+          <isEqual   property="ch" compareValue="1">
+            		where  title LIKE  '%$search$%'
+        </isEqual>
+        <![CDATA[
+        ]]>
+    </select>
+    
+    <select id="adsaledetail" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM sale
+            where idx=#idx#
+        ]]>
+</select>
+    
+    
+    <update id="saleup">
+		<![CDATA[
+			UPDATE sale
+			SET title=#title#
+				, context=#content#
+				, make="관리자"
+				, date=now()
+				, type=#type#
+				, bland=#bland#
+			WHERE idx=#idx#
+		]]>
+</update>
+    
+<insert id="saleadd">
+		<![CDATA[
+			INSERT INTO sale
+				( title
+				  , context
+				  , type
+				  , bland
+				  , date
+				  )
+			VALUES ( #title#
+				  , #content#
+				  , #type#
+				  , #bland#
+				  
+				  , now())
+		]]>
+</insert>
+    
+
+</sqlMap>

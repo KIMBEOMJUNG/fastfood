@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Sample">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+
+	<resultMap id="sample" class="egovframework.example.sample.service.SampleVO">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<result property="useYn" column="use_yn"/>
+		<result property="regUser" column="reg_user"/>
+	</resultMap>
+
+
+	<select id="todayitem" resultClass="egovMap" parameterClass="egovMap">
+
+ SELECT * 
+  FROM burger
+  where idx=#nums#
+  
+</select>
+
+<update id="salegood">
+		<![CDATA[
+			UPDATE sale
+			SET good = good+1
+			WHERE idx=#idx#
+		]]>
+</update>
+
+<update id="salebad">
+		<![CDATA[
+			UPDATE sale
+			SET bad = bad+1
+			WHERE idx=#idx#
+		]]>
+</update>
+
+<update id="burgergood">
+		<![CDATA[
+			UPDATE burger
+			SET good = good+1
+			WHERE idx=#idx#
+		]]>
+</update>
+
+<select id="allt" resultClass="EgovMap">
+        <![CDATA[
+             SELECT 
+                *
+            FROM burger
+            limit $firstindex$, $recordperpage$
+        ]]>
+    </select>
+     <select id="alll" resultClass="EgovMap">
+        <![CDATA[
+            SELECT count(*) num
+            FROM burger
+        ]]>
+    </select>
+
+
+</sqlMap>
