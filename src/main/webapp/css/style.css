@@ -1939,6 +1939,8 @@ ul li {
 	color: #797979;
 	padding: 5px 10px;
 	display: inline-block;
+	background-color: #ddd0;
+    border: none;
 }
 .dataTables_paginate.paging_bootstrap.pagination li:hover a, .dataTables_paginate.paging_bootstrap.pagination li.active a {
 	color: #fff;
