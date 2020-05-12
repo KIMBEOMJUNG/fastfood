@@ -143,7 +143,9 @@
               
               <!-- /col-md-4 -->
             </div>
+            <div class="dataTables_paginate paging_bootstrap pagination">
             <ui:pagination paginationInfo="${paginationInfo }" type="image" jsFunction="fn_egov_link_page"/>
+			</div>
 <form action="/fastfood/main/all.do" name="listForm" id="listForm">
 	<input type="hidden" name="pageIndex" value="1"/>	
 </form>
